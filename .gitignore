@@ -1,0 +1,8 @@
+# gitignore for car-service project
+.idea/
+.gradle/
+build/*
+!/build
+!/build/libs
+!/build/libs/*
+docker/car-service-DEV-SNAPSHOT.jar

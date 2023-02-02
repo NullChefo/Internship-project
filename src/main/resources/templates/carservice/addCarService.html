@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addCarService</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+<body>
+<h1>Add a car service</h1>
+
+<hr class="border border-danger border-2 opacity-50">
+
+<section>
+    <th:block th:object="${car}">
+        <div>Car ID: <span th:text="${car.getId()}">car_id</span></div>
+        <div>Current owner: <span th:text="${car.getCurrentOwner()}">current_owner</span></div>
+        <div>Make: <span th:text="${car.getMake()}">make</span></div>
+        <div>Model: <span th:text="${car.getModel()}">model</span></div>
+        <div>Production year: <span th:text="${car.getProductionYear()}">production_year</span></div>
+        <div>Registration(licence plate): <span th:text="${car.getRegistration()}">registration</span></div>
+    </th:block>
+</section>
+
+<section>
+    <form th:action="@{/cars/{carId}/addCarService(carId=${car.getId()})}" th:method="post" th:object="${service}">
+        <div class="mb-3">
+            <label for="date">Date: </label>
+            <input id="date" type="date" th:field="*{date}">
+        </div>
+        <div class="mb-3">
+            <label for="odometer">Odometer reading(km): </label>
+            <input id="odometer" type="number" th:field="*{odometerReading}">
+        </div>
+        <div class="mb-3">
+            <label for="description">Description: </label>
+            <input id="description" type="text" th:field="*{description}">
+        </div>
+        <div class="mb-3">
+            <label for="scheduled">Scheduled: </label>
+            <input id="scheduled" type="checkbox" th:field="*{scheduled}">
+        </div>
+        <div class="mb-3">
+            <label for="nextDate">Next service date: </label>
+            <input id="nextDate" type="date" th:field="*{nextDate}">
+        </div>
+        <div class="mb-3">
+            <label for="nextChangeIn">Next change in(km): </label>
+            <input id="nextChangeIn" type="number" th:field="*{nextChangeIn}">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-success" type="submit" value="Add service">
+        </div>
+    </form>
+
+    <hr class="border border-primary border-3 opacity-75">
+
+    <a class="btn btn-secondary" th:href="@{/cars/{carId}(carId=${car.getId()})}">Cancel</a>
+
+</section>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>
