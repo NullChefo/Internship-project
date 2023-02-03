@@ -1,0 +1,2 @@
+insert into `users` (first_name,last_name,email,username,password,account_locked,account_expired,credentials_non_expired,enabled,roles)
+values('Admin','Adminov','admin@webserve.org','admin','admin',0,0,1,1,'ROLE_ADMIN');

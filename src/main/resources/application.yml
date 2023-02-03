@@ -2,13 +2,14 @@
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/car-service-db?useSSL=false&createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-#    username: ${MYSQL_USER}
-#    password: ${MYSQL_PASSWORD}
-
+#    username: ${MYSQL_USER:sa}
+#    password: ${MYSQL_PASSWORD:pass}
+#
 #  jpa:
 #    hibernate:
-#      ddl-auto: update
+#      ddl-auto: create-drop
 #    database-platform: org.hibernate.dialect.MySQL5Dialect
+#    defer-datasource-initialization: true
 
 spring:
   datasource:
@@ -21,6 +22,9 @@ spring:
     hibernate:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+
+
 
 auth:
   accessTokenSecret: exampleTokenSecret

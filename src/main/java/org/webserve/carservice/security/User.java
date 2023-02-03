@@ -12,7 +12,6 @@ import org.springframework.util.StringUtils;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -28,7 +27,7 @@ public class User implements UserDetails {
 	private String firstName;
 	private String lastName;
 	// TODO make unique = true
-	@Column(unique = true, nullable = false)
+	@Column(length = 60, unique = true, nullable = false)
 	private String email;
 	@Column(length = 60, unique = true, nullable = false)
 	private String username;
@@ -38,12 +37,12 @@ public class User implements UserDetails {
 	private String roles;
 	private boolean enabled = false; // email verified
 	private boolean credentialsNonExpired = false;
-	private boolean accountLocked = false;
-	private boolean accountExpired = false;
+	private boolean accountLocked;
+	private boolean accountExpired;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.stream(StringUtils.trimAllWhitespace(roles).split(",")).map(s -> new SimpleGrantedAuthority(s)).collect(Collectors.toList());
+		return Arrays.stream(StringUtils.trimAllWhitespace(roles).split(",")).map(SimpleGrantedAuthority::new).toList();
 	}
 
 	@Override

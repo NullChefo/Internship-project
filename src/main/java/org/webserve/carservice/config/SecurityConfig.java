@@ -12,8 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -31,54 +33,70 @@ import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.
 public class SecurityConfig {
 
     //TODO comment out
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(H2)
-                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-                .build();
-    }
+//    @Bean
+//    public DataSource dataSource(DataSource dataSource) {
+//
+//        return new EmbeddedDatabaseBuilder()
+//                .setType(H2)
+//                .addScript("classpath:sql/ser-init.sql")
+//                .build();
+//    }
 
     //TODO comment out
-    @Bean
-    public UserDetailsManager users(DataSource dataSource) {
-        UserDetails user = User.builder()
-                .username("user")
-                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-                .roles("USER")
-                .accountExpired(true)
-                .build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-                .roles("USER", "ADMIN")
-                .accountExpired(true)
-                .build();
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        users.createUser(user);
-        users.createUser(admin);
-        return users;
+//    @Bean
+//    public UserDetailsManager users(WebserveUserDetailsService webserveUserDetailsService) {
+//        return (UserDetailsManager) webserveUserDetailsService;
+//    }
+//
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder,
+//                                JwtHelper jwtHelper,
+                                WebserveUserDetailsService webserveUserDetailsService) throws Exception {
+        authenticationManagerBuilder
+//                .authenticationProvider(new JwtAuthenticationProvider(jwtHelper))
+                .userDetailsService(webserveUserDetailsService)
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder,
-//                                JwtHelper jwtHelper,
-//                                UserDetailsManager webserveUserDetailsService) throws Exception {
-//        authenticationManagerBuilder
-//                .authenticationProvider(new JwtAuthenticationProvider(jwtHelper))
-//                .userDetailsService(webserveUserDetailsService)
-//                .passwordEncoder(new BCryptPasswordEncoder(13));
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return  authenticationConfiguration.getAuthenticationManager();
+//    }
+
+//    @Bean
+//    UserDetailsManager users(DataSource dataSource) {
+//        UserDetails user = User.builder()
+//                .username("user")
+//                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+//                .accountExpired(false)
+//                .roles("USER")
+//                .build();
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+//                .accountExpired(false)
+//                .roles("USER", "ADMIN")
+//                .build();
+//        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+//        users.createUser(user);
+//        users.createUser(admin);
+//        return users;
+//    }
+//    @Bean
+//    public WebserveUserDetailsService userDetailsService(WebserveUserDetailsService webserveUserDetailsService){
+//        return webserveUserDetailsService;
+//    }
+
+//    @Bean
+//    public static PasswordEncoder encoder() {
+//        return new BCryptPasswordEncoder();
 //    }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return  authenticationConfiguration.getAuthenticationManager();
-    }
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,AuthenticationManager authenticationManager) throws Exception {
-
-        httpSecurity.addFilter(new BearerTokenAuthenticationFilter(authenticationManager));
+        httpSecurity
+                .formLogin();
         return httpSecurity.build();
     }
 }
