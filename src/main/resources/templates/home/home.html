@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>Car Service Home DEV-Snapshot</title>
@@ -10,7 +10,15 @@
 </head>
 
 <body>
-<h1> Welcome to Car Service Home</h1>
+
+<div>
+    <h1> Welcome to Car Service Home</h1>
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <span style="color: white;background-color: blue">ADMIN ONLY</span>
+        <a th:href="@{/actuator}">Actuator</a>
+    </div>
+</div>
 
 <hr class="border border-danger border-2 opacity-50">
 
