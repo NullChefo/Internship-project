@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .mvcMatchers("/**").authenticated()
                 .anyRequest().denyAll()
                 .and()
-                .formLogin();
+                .formLogin().loginPage("/login");
         return httpSecurity.build();
     }
 }
