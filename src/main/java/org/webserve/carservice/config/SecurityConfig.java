@@ -34,6 +34,7 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests().mvcMatchers("/login").permitAll()
                 .mvcMatchers("cars/viewAllCars").hasRole("ADMIN")
+                .mvcMatchers("/actuator/**").hasRole("ADMIN")
                 .mvcMatchers("/**").authenticated()
                 .anyRequest().denyAll()
                 .and()
