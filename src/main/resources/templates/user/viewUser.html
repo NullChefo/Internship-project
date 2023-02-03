@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>viewUser</title>
+    <!-- CSS only -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">
+
+</head>
+<body>
+<h1 class="d-flex justify-content-center">User Details</h1>
+
+<a th:href="@{/}">Back to Home page</a>
+
+<hr class="border border-danger border-2 opacity-50">
+
+<section>
+    <th:block th:object="${user}">
+        <div>User ID: <span th:text="${user.getId()}">user_id</span></div>
+        <div>First name: <span th:text="${user.getFirstName()}">current_owner</span></div>
+        <div>Last name: <span th:text="${user.getLastName()}">make</span></div>
+        <div>Email: <span th:text="${user.getEmail()}">model</span></div>
+        <div>Password: <span th:text="${user.getPassword()}">production_year</span></div>
+        <div>Username: <span th:text="${user.getUsername()}">registration</span></div>
+
+        <div class="d-flex flex-row m-2 gap-3">
+            <div>
+                <form th:action="@{/users/editUser}" th:method="get" th:object="${user}">
+                    <input th:field="*{id}" th:value="${user.getId()}" type="hidden">
+                    <input class="btn btn-warning" type="submit" value="Edit User">
+                </form>
+            </div>
+            <div>
+                <form th:action="@{/users/deleteUser}" th:method="post" th:object="${user}">
+                    <input th:field="*{id}" th:value="${user.getId()}" type="hidden">
+                    <input class="btn btn-danger" type="submit" value="Delete user">
+                </form>
+            </div>
+
+        </div>
+    </th:block>
+</section>
+
+<hr class="border border-primary border-3 opacity-75">
+
+<!-- JavaScript Bundle with Popper -->
+<script crossorigin="anonymous"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
