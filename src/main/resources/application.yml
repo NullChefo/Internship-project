@@ -23,13 +23,3 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
-
-
-
-auth:
-  accessTokenSecret: exampleTokenSecret
-  refreshTokenSecret: exampleRefreshTokenSecret
-  accessTokenDurationMinutes: 600
-  refreshTokenDurationMinutes: 1200
-  accessTokenCookieName: accessToken
-  refreshTokenCookieName: refreshToken

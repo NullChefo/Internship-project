@@ -8,7 +8,6 @@ import org.webserve.carservice.carservice.data.CarService;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 import java.time.Year;
 import java.util.Set;
 

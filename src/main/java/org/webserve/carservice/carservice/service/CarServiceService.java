@@ -21,7 +21,7 @@ public class CarServiceService {
     }
 
     public Optional<CarService> getByCarServiceId(Long id) {
-        return carServiceRepository.findById(id).map(CarService -> modelMapper.map(CarService, CarService.class));
+        return carServiceRepository.findById(id).map(cs -> modelMapper.map(cs, CarService.class));
     }
 
     public CarService saveCarService(CarService carService) {
