@@ -12,7 +12,7 @@
 <body>
 
 <div>
-    <h1> Welcome to Car Service Home</h1>
+    <h1 class="d-flex justify-content-center"> Welcome to Car Service Home</h1>
 
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <span style="color: white;background-color: blue">ADMIN ONLY</span>
@@ -29,6 +29,14 @@
             <a class="navbar-brand" th:href="@{/cars/addCar}">Add a New Car</a>
         </div>
     </nav>
+
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/users/viewAllUsers}">View All Users</a>
+            <a class="navbar-brand" th:href="@{/users/addUser}">Add a New User</a>
+        </div>
+    </nav>
+
 </section>
 
 <hr class="border border-primary border-3 opacity-75">

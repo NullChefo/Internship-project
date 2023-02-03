@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<h1>Car Details</h1>
+<h1 class="d-flex justify-content-center">Car Details</h1>
 
 <a th:href="@{/}">Back to Home page</a>
 
@@ -23,24 +23,28 @@
         <div>Production year: <span th:text="${car.getProductionYear()}">production_year</span></div>
         <div>Registration(licence plate): <span th:text="${car.getRegistration()}">registration</span></div>
 
-        <div>
-            <form th:action="@{/cars/addCarService}" th:method="get" th:object="${car}">
-                <input type="hidden" th:field="*{id}" th:value="*{id}">
-                <input class="btn btn-success" type="submit" value="Add car service">
-            </form>
+        <div class="d-flex flex-row m-2 gap-3">
+            <div>
+                <form th:action="@{/cars/addCarService}" th:method="get" th:object="${car}">
+                    <input th:field="*{id}" th:value="*{id}" type="hidden">
+                    <input class="btn btn-success" type="submit" value="Add car service">
+                </form>
+            </div>
+            <div>
+                <form th:action="@{/cars/editCar}" th:method="get" th:object="${car}">
+                    <input th:field="*{id}" th:value="${car.getId()}" type="hidden">
+                    <input class="btn btn-warning" type="submit" value="EditCar">
+                </form>
+            </div>
+            <div>
+                <form th:action="@{/cars/deleteCar}" th:method="post" th:object="${car}">
+                    <input th:field="*{id}" th:value="${car.getId()}" type="hidden">
+                    <input class="btn btn-danger" type="submit" value="Delete car">
+                </form>
+            </div>
+
         </div>
-        <div>
-            <form th:action="@{/cars/editCar}" th:method="get" th:object="${car}">
-                <input type="hidden" th:field="*{id}" th:value="${car.getId()}">
-                <input class="btn btn-warning" type="submit" value="EditCar">
-            </form>
-        </div>
-        <div>
-            <form th:action="@{/cars/deleteCar}" th:method="post" th:object="${car}">
-                <input type="hidden" th:field="*{id}" th:value="${car.getId()}">
-                <input class="btn btn-danger" type="submit" value="Delete car">
-            </form>
-        </div>
+
         <div>
             <table class="table table-hover">
                 <thead>
