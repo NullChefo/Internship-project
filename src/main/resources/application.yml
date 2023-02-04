@@ -1,28 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/car-service-db?useSSL=false&createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+
 #spring:
 #  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/car-service-db?useSSL=false&createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-#    username: ${MYSQL_USER:sa}
-#    password: ${MYSQL_PASSWORD:pass}
+#    driver-class-name: org.h2.Driver
+#    url: "jdbc:h2:mem:car-service-db"
+#    username: sa
+#    password: password
 #
 #  jpa:
 #    hibernate:
 #      ddl-auto: create-drop
-#    database-platform: org.hibernate.dialect.MySQL5Dialect
+#    database-platform: org.hibernate.dialect.H2Dialect
 #    defer-datasource-initialization: true
-
-spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: "jdbc:h2:mem:car-service-db"
-    username: sa
-    password: password
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
 
 management:
   endpoints:

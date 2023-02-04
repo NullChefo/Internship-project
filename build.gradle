@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     implementation 'com.auth0:java-jwt:4.2.1'
-    implementation 'com.h2database:h2:2.1.214'
+ //   implementation 'com.h2database:h2:2.1.214'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
     implementation 'org.modelmapper:modelmapper:3.1.0'
 

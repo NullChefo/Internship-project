@@ -3,7 +3,9 @@ package org.webserve.carservice.car.data;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.webserve.carservice.carservice.data.CarService;
+import org.webserve.carservice.carservices.data.CarService;
+import org.webserve.carservice.carservices.data.TechnicalInspection;
+import org.webserve.carservice.carservices.data.Vignette;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -34,4 +36,18 @@ public class Car {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<CarService> carService;
+
+	@OneToMany(mappedBy = "car", fetch = EAGER, cascade = REMOVE)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Set<Vignette> carVignette;
+
+	@OneToMany(mappedBy = "car", fetch = EAGER, cascade = REMOVE)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private Set<TechnicalInspection> carTechnicalInspection;
+
+
+
+
 }
