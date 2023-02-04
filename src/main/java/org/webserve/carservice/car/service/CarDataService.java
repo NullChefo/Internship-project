@@ -30,7 +30,7 @@ public class CarDataService {
     }
 
     public Optional<Car> getByRegistration(String registration) {
-        return carDataRepository.findByRegistration(registration).map(Car -> modelMapper.map(Car, Car.class));
+        return carDataRepository.findByRegistration(registration).map(c -> modelMapper.map(c, Car.class));
     }
 
     public Car saveCar(Car car) {

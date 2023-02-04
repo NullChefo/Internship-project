@@ -1,7 +1,7 @@
-package org.webserve.carservice.carservice.repository;
+package org.webserve.carservice.carservices.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.webserve.carservice.carservice.data.CarService;
+import org.webserve.carservice.carservices.data.CarService;
 
 import java.util.List;
 

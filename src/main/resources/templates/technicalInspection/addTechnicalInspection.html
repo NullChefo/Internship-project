@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>addCarService</title>
+    <title>addTechnicalInspection</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 </head>
 <body>
-<h1 class="d-flex justify-content-center">Add a car service</h1>
+<h1 class="d-flex justify-content-center">Add a technical inspection</h1>
 
 <hr class="border border-danger border-2 opacity-50">
 
@@ -24,31 +24,19 @@
 </section>
 
 <section>
-    <form th:action="@{/cars/{carId}/addCarService(carId=${car.getId()})}" th:method="post" th:object="${service}">
+    <form th:action="@{/technicalInspections/{carId}/addTechnicalInspection(carId=${car.getId()})}" th:method="post" th:object="${service}">
+
+
         <div class="mb-3">
-            <label for="date">Date: </label>
-            <input id="date" type="date" th:field="*{date}">
+            <label for="startDate">Start date: </label>
+            <input id="startDate" type="date" th:field="*{startDate}">
         </div>
+
         <div class="mb-3">
-            <label for="odometer">Odometer reading(km): </label>
-            <input id="odometer" type="number" th:field="*{odometerReading}">
+            <label for="endDate">End date: </label>
+            <input id="endDate" type="date" th:field="*{endDate}">
         </div>
-        <div class="mb-3">
-            <label for="description">Description: </label>
-            <input id="description" type="text" th:field="*{description}">
-        </div>
-        <div class="mb-3">
-            <label for="scheduled">Scheduled: </label>
-            <input id="scheduled" type="checkbox" th:field="*{scheduled}">
-        </div>
-        <div class="mb-3">
-            <label for="nextDate">Next service date: </label>
-            <input id="nextDate" type="date" th:field="*{nextDate}">
-        </div>
-        <div class="mb-3">
-            <label for="nextChangeIn">Next change in(km): </label>
-            <input id="nextChangeIn" type="number" th:field="*{nextChangeIn}">
-        </div>
+
         <div class="mb-3">
             <input class="btn btn-success" type="submit" value="Add service">
         </div>
