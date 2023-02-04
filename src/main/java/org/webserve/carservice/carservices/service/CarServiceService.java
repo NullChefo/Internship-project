@@ -1,11 +1,11 @@
-package org.webserve.carservice.carservice.service;
+package org.webserve.carservice.carservices.service;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.webserve.carservice.car.data.Car;
-import org.webserve.carservice.carservice.data.CarService;
-import org.webserve.carservice.carservice.repository.CarServiceRepository;
+import org.webserve.carservice.carservices.data.CarService;
+import org.webserve.carservice.carservices.repository.CarServiceRepository;
 
 import java.util.List;
 import java.util.Optional;

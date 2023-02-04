@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.webserve.carservice.car.data.Car;
 import org.webserve.carservice.car.service.CarDataService;
-import org.webserve.carservice.carservice.data.CarService;
-import org.webserve.carservice.carservice.service.CarServiceService;
+import org.webserve.carservice.carservices.data.CarService;
+import org.webserve.carservice.carservices.service.CarServiceService;
 
 @Controller
 @RequiredArgsConstructor
